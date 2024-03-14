@@ -29,7 +29,7 @@ def get_store(name):
 def get_items(name):
     for store in stores:
         if store["name"] == name:
-            return store["items"], 201
+            return {"items": store["items"]}, 201
     return {"message": "Store not found"}, 404
 
 @app.post("/store")
