@@ -8,7 +8,7 @@ stores = [
         "items": [
             {
                 "name": "My Item",
-                "price": 15.99
+                "price": 16.75
             }
         ]
     }
