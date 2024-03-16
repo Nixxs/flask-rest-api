@@ -48,7 +48,7 @@ def create_store():
     return store, 201
 
 @app.delete("/store/<string:store_id>")
-def delete_item(store_id):
+def delete_store(store_id):
     try:
         del stores[store_id]
         return {"message": "Store deleted"}, 201
@@ -56,7 +56,7 @@ def delete_item(store_id):
         abort(404, message="store not found")
 
 @app.put("/stores/<string:store_id>")
-def update_item(store_id):
+def update_store(store_id):
     store_data = request.get_json()
     if "name" not in store_data:
         abort(400, message="Bad Request, please include name in payload")
