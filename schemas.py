@@ -13,3 +13,6 @@ class UpdateItemSchema(Schema):
 class StoreSchema(Schema):
     id = fields.Str(dump_only=True)
     name = fields.Str(required=True)
+
+class UpdateStoreSchema(Schema):
+    name = fields.Str(required=True)
