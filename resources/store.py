@@ -57,4 +57,6 @@ class Store(MethodView):
 
     def delete(self, store_id):
         store = StoreModel.query.get_or_404(store_id)
-        raise NotImplementedError("Deleting is not implemented yet")
+        db.session.delete(store)
+        db.session.commit()
+        return {"message": "store deleted."}
