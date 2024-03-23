@@ -1,4 +1,4 @@
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 
@@ -43,6 +43,9 @@ class Store(MethodView):
     @blp.arguments(UpdateStoreSchema)
     @blp.response(200, StoreSchema)
     def put(self, store_data, store_id):
+        # this is how to get the user id from the token
+        # userid = get_jwt_identity()
+        # print(userid)
         store = StoreModel.query.get(store_id)
 
         # if the store exists
