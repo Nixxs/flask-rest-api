@@ -1,10 +1,33 @@
-version: '2.24.6'
+version: '3.8'
+
 services:
-  flask-rest-api:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
     build: .
+    restart: always
     ports:
       - "5000:5000"
     environment:
-      - FLASK_ENV=development
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - DB_HOST=db  # This points to the service name of your database in Docker
+      - DB_PORT=${DB_PORT}
+      - DB_SSL=${DB_SSL}
+    depends_on:
+      db:
+        condition: service_started
     volumes:
       - .:/app
+
+volumes:
+  postgres_data:
