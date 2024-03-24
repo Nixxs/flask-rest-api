@@ -3,6 +3,7 @@ from flask_smorest import Blueprint, abort
 from sqlalchemy.exc import SQLAlchemyError
 from passlib.hash import pbkdf2_sha256
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt
+from flask import jsonify
 
 
 from db import db
@@ -29,7 +30,7 @@ class UserRegister(MethodView):
 
         db.session.add(user)
         db.session.commit()
-        return {"message":"User created."}, 200
+        return {"message":"User created :)"}, 200
 
 @blp.route("/user/<int:user_id>")
 class User(MethodView):
